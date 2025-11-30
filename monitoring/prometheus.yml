@@ -1,0 +1,49 @@
+# Prometheus Configuration for PAM-Vault-Lab
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'pam-vault-lab'
+    environment: 'development'
+
+# Scrape configurations
+scrape_configs:
+  # Vault metrics
+  - job_name: 'vault'
+    metrics_path: '/v1/sys/metrics'
+    params:
+      format: ['prometheus']
+    static_configs:
+      - targets: ['vault:8200']
+        labels:
+          service: 'vault'
+          role: 'pam-core'
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          service: 'prometheus'
+          role: 'monitoring'
+
+  # PostgreSQL exporter (if added)
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-target:5432']
+        labels:
+          service: 'postgresql'
+          role: 'database'
+
+  # MySQL exporter (if added)
+  - job_name: 'mysql'
+    static_configs:
+      - targets: ['mysql-target:3306']
+        labels:
+          service: 'mysql'
+          role: 'database'
+
+# Alerting rules (optional)
+rule_files:
+  # - "alerts.yml"

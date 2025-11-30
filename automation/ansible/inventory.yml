@@ -1,0 +1,57 @@
+---
+# Ansible Inventory for PAM-Vault-Lab
+all:
+  vars:
+    ansible_connection: local
+    vault_addr: "http://localhost:8200"
+    vault_dev_mode: true
+
+  children:
+    vault_servers:
+      hosts:
+        localhost:
+          ansible_connection: local
+      vars:
+        vault_port: 8200
+        vault_config_path: "{{ playbook_dir }}/../../vault/config"
+        vault_policies_path: "{{ playbook_dir }}/../../vault/policies"
+        vault_scripts_path: "{{ playbook_dir }}/../../vault/scripts"
+
+    database_targets:
+      hosts:
+        postgres:
+          ansible_host: localhost
+          ansible_port: 5432
+          db_type: postgresql
+          db_name: testdb
+          db_admin_user: vaultadmin
+          db_admin_password: vaultpass123
+
+        mysql:
+          ansible_host: localhost
+          ansible_port: 3306
+          db_type: mysql
+          db_name: testdb
+          db_admin_user: root
+          db_admin_password: rootpass123
+
+    ssh_targets:
+      hosts:
+        ssh-target:
+          ansible_host: localhost
+          ansible_port: 2222
+          ansible_user: privileged
+          ansible_password: changeme123
+          ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+    monitoring:
+      hosts:
+        prometheus:
+          ansible_host: localhost
+          prometheus_port: 9090
+
+        grafana:
+          ansible_host: localhost
+          grafana_port: 3000
+          grafana_admin_user: admin
+          grafana_admin_password: admin

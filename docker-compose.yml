@@ -1,0 +1,164 @@
+version: '3.8'
+
+services:
+  # HashiCorp Vault - Core PAM System
+  vault:
+    image: hashicorp/vault:1.15
+    container_name: vault
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: ${VAULT_DEV_ROOT_TOKEN_ID:-root-token-change-me}
+      VAULT_DEV_LISTEN_ADDRESS: ${VAULT_DEV_LISTEN_ADDRESS:-0.0.0.0:8200}
+      VAULT_ADDR: http://0.0.0.0:8200
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./vault/config:/vault/config
+      - ./vault/policies:/vault/policies
+      - ./vault/scripts:/scripts
+      - vault-data:/vault/file
+      - vault-logs:/vault/logs
+    command: server -dev -dev-root-token-id=${VAULT_DEV_ROOT_TOKEN_ID:-root-token-change-me}
+    healthcheck:
+      test: ["CMD", "vault", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pam-network
+
+  # PostgreSQL - Target for Dynamic Credentials
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres-target
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-vaultadmin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vaultpass123}
+      POSTGRES_DB: ${POSTGRES_DB:-testdb}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./targets/database/init-postgres.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-vaultadmin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pam-network
+
+  # MySQL - Target for Password Rotation
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-target
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass123}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-testdb}
+      MYSQL_USER: ${MYSQL_USER:-vaultuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-vaultpass123}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./targets/database/init-mysql.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-rootpass123}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pam-network
+
+  # SSH Target - Linux Server for Privileged Access
+  ssh-target:
+    build:
+      context: ./targets/linux
+      dockerfile: Dockerfile
+    container_name: ssh-target
+    ports:
+      - "2222:22"
+    environment:
+      SSH_USER: ${SSH_TARGET_USER:-privileged}
+      SSH_PASSWORD: ${SSH_TARGET_PASSWORD:-changeme123}
+    volumes:
+      - ssh-data:/home/${SSH_TARGET_USER:-privileged}
+    healthcheck:
+      test: ["CMD", "pgrep", "sshd"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pam-network
+
+  # Prometheus - Metrics Collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pam-network
+    depends_on:
+      - vault
+
+  # Grafana - Visualization Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_INSTALL_PLUGINS: grafana-clock-panel
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pam-network
+    depends_on:
+      - prometheus
+
+networks:
+  pam-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+volumes:
+  vault-data:
+    driver: local
+  vault-logs:
+    driver: local
+  postgres-data:
+    driver: local
+  mysql-data:
+    driver: local
+  ssh-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local

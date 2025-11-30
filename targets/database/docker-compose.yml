@@ -1,0 +1,30 @@
+# Additional database targets (if needed separately)
+# This file is optional - databases are already in main docker-compose.yml
+
+version: '3.8'
+
+services:
+  postgres-standalone:
+    image: postgres:15-alpine
+    container_name: postgres-standalone
+    environment:
+      POSTGRES_USER: vaultadmin
+      POSTGRES_PASSWORD: vaultpass123
+      POSTGRES_DB: testdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./init-postgres.sql:/docker-entrypoint-initdb.d/init.sql
+
+  mysql-standalone:
+    image: mysql:8.0
+    container_name: mysql-standalone
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: vaultuser
+      MYSQL_PASSWORD: vaultpass123
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init-mysql.sql:/docker-entrypoint-initdb.d/init.sql

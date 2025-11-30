@@ -1,0 +1,81 @@
+# Environment and secrets
+.env
+*.env
+!.env.example
+vault-data/
+vault-logs/
+vault-keys.txt
+root-token.txt
+unseal-keys.json
+
+# Vault file storage (dev mode)
+vault/data/
+vault/file/
+vault/raft/
+
+# Docker volumes
+volumes/
+
+# Logs
+*.log
+logs/
+audit-logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Ansible
+*.retry
+.ansible/
+ansible.log
+
+# PowerShell
+*.ps1.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Terraform (if added later)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Certificates (if generated)
+*.pem
+*.key
+*.crt
+*.csr
+!example.crt
+
+# Backup files
+*.bak
+*.backup

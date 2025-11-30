@@ -1,0 +1,214 @@
+---
+# Ansible Playbook: Setup HashiCorp Vault
+# Purpose: Automate Vault initialization and configuration
+# Usage: ansible-playbook playbooks/setup-vault.yml
+
+- name: Setup HashiCorp Vault for PAM Lab
+  hosts: localhost
+  gather_facts: yes
+  vars:
+    vault_addr: "{{ lookup('env', 'VAULT_ADDR') | default('http://localhost:8200', true) }}"
+    vault_token: "{{ lookup('env', 'VAULT_TOKEN') | default('root-token-change-me', true) }}"
+    policies_dir: "../../vault/policies"
+    sample_secrets:
+      - path: "secret/database/prod"
+        data:
+          username: "admin"
+          password: "supersecret123"
+          host: "postgres-target"
+          port: "5432"
+      - path: "secret/database/dev"
+        data:
+          username: "devuser"
+          password: "devpass456"
+          host: "localhost"
+          port: "5432"
+      - path: "secret/app/api-keys"
+        data:
+          service: "myapp"
+          api_key: "abc123xyz789"
+          environment: "production"
+
+  tasks:
+    - name: Check if Vault is accessible
+      uri:
+        url: "{{ vault_addr }}/v1/sys/health"
+        method: GET
+        status_code: [200, 429, 472, 473, 501, 503]
+      register: vault_health
+      failed_when: false
+
+    - name: Display Vault health status
+      debug:
+        msg: "Vault is {{ 'sealed' if vault_health.status == 503 else 'unsealed' }}"
+
+    - name: Wait for Vault to be ready
+      uri:
+        url: "{{ vault_addr }}/v1/sys/health"
+        method: GET
+        status_code: 200
+      register: result
+      until: result.status == 200
+      retries: 10
+      delay: 5
+
+    - name: Enable KV v2 secrets engine at secret/
+      uri:
+        url: "{{ vault_addr }}/v1/sys/mounts/secret"
+        method: POST
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          type: "kv"
+          options:
+            version: "2"
+        status_code: [200, 204, 400]
+      register: kv_enable
+      failed_when:
+        - kv_enable.status not in [200, 204, 400]
+        - "'path is already in use' not in (kv_enable.json.errors[0] | default(''))"
+
+    - name: Enable database secrets engine
+      uri:
+        url: "{{ vault_addr }}/v1/sys/mounts/database"
+        method: POST
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          type: "database"
+        status_code: [200, 204, 400]
+      register: db_enable
+      failed_when:
+        - db_enable.status not in [200, 204, 400]
+        - "'path is already in use' not in (db_enable.json.errors[0] | default(''))"
+
+    - name: Enable SSH secrets engine
+      uri:
+        url: "{{ vault_addr }}/v1/sys/mounts/ssh"
+        method: POST
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          type: "ssh"
+        status_code: [200, 204, 400]
+      register: ssh_enable
+      failed_when:
+        - ssh_enable.status not in [200, 204, 400]
+        - "'path is already in use' not in (ssh_enable.json.errors[0] | default(''))"
+
+    - name: Read policy files
+      set_fact:
+        admin_policy: "{{ lookup('file', policies_dir + '/admin-policy.hcl') }}"
+        readonly_policy: "{{ lookup('file', policies_dir + '/readonly-policy.hcl') }}"
+        rotation_policy: "{{ lookup('file', policies_dir + '/rotation-policy.hcl') }}"
+
+    - name: Create admin policy
+      uri:
+        url: "{{ vault_addr }}/v1/sys/policies/acl/admin-policy"
+        method: PUT
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          policy: "{{ admin_policy }}"
+        status_code: [200, 204]
+
+    - name: Create readonly policy
+      uri:
+        url: "{{ vault_addr }}/v1/sys/policies/acl/readonly-policy"
+        method: PUT
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          policy: "{{ readonly_policy }}"
+        status_code: [200, 204]
+
+    - name: Create rotation policy
+      uri:
+        url: "{{ vault_addr }}/v1/sys/policies/acl/rotation-policy"
+        method: PUT
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          policy: "{{ rotation_policy }}"
+        status_code: [200, 204]
+
+    - name: Create sample secrets
+      uri:
+        url: "{{ vault_addr }}/v1/{{ item.path | regex_replace('^secret/', 'secret/data/') }}"
+        method: POST
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          data: "{{ item.data }}"
+        status_code: [200, 204]
+      loop: "{{ sample_secrets }}"
+      loop_control:
+        label: "{{ item.path }}"
+
+    - name: Enable file audit device
+      uri:
+        url: "{{ vault_addr }}/v1/sys/audit/file"
+        method: PUT
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          type: "file"
+          options:
+            file_path: "/vault/logs/audit.log"
+        status_code: [200, 204, 400]
+      register: audit_enable
+      failed_when:
+        - audit_enable.status not in [200, 204, 400]
+        - "'path already in use' not in (audit_enable.json.errors[0] | default(''))"
+
+    - name: Create tokens for different roles
+      uri:
+        url: "{{ vault_addr }}/v1/auth/token/create"
+        method: POST
+        headers:
+          X-Vault-Token: "{{ vault_token }}"
+        body_format: json
+        body:
+          policies: ["{{ item.policy }}"]
+          ttl: "{{ item.ttl }}"
+          display_name: "{{ item.name }}"
+        status_code: [200]
+      register: token_creation
+      loop:
+        - { policy: "admin-policy", ttl: "24h", name: "admin-token" }
+        - { policy: "readonly-policy", ttl: "24h", name: "readonly-token" }
+        - { policy: "rotation-policy", ttl: "168h", name: "rotation-token" }
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Display created tokens
+      debug:
+        msg:
+          - "{{ item.item.name }}: {{ item.json.auth.client_token }}"
+      loop: "{{ token_creation.results }}"
+      loop_control:
+        label: "{{ item.item.name }}"
+
+    - name: Summary of setup
+      debug:
+        msg:
+          - "Vault Setup Complete!"
+          - "===================="
+          - "Vault Address: {{ vault_addr }}"
+          - "Secrets Engines Enabled: KV v2, Database, SSH"
+          - "Policies Created: admin-policy, readonly-policy, rotation-policy"
+          - "Sample Secrets Created: {{ sample_secrets | length }}"
+          - "Audit Device: Enabled (file)"
+          - ""
+          - "Next Steps:"
+          - "1. Configure database connections: ansible-playbook playbooks/configure-databases.yml"
+          - "2. Test rotation: ansible-playbook playbooks/rotate-password.yml"
+          - "3. Access Vault UI: {{ vault_addr }}"
