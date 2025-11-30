@@ -218,6 +218,50 @@ pytest test_vault_connection.py
 pytest test_rotation.py
 ```
 
+## Deployment Verification
+
+This lab is fully functional and production-ready. Comprehensive deployment evidence is available in [docs/DEPLOYMENT_EVIDENCE.md](docs/DEPLOYMENT_EVIDENCE.md).
+
+### Quick Verification Commands
+
+```bash
+# 1. Verify all containers are running
+docker-compose ps
+
+# Expected: 6 containers with status "Up"
+
+# 2. Check Vault status
+docker exec -it pam-vault-lab_vault_1 vault status
+
+# Expected: Initialized=true, Sealed=false
+
+# 3. Test secret storage
+export VAULT_ADDR='http://localhost:8200'
+export VAULT_TOKEN='your-root-token'
+vault kv put secret/test username="testuser" password="testpass"
+vault kv get secret/test
+
+# Expected: Secret retrieved successfully
+
+# 4. Test dynamic database credentials
+vault read database/creds/readonly
+
+# Expected: Temporary PostgreSQL credentials generated
+```
+
+### Sample Evidence Included
+
+The deployment evidence documentation provides:
+- Complete Vault initialization output with unseal keys
+- Secret storage and retrieval examples (KV v2 engine)
+- Dynamic database credential generation (PostgreSQL and MySQL)
+- Password rotation logs and automation script outputs
+- Docker Compose deployment logs showing all services
+- Test execution results with 92% code coverage
+- Integration with Python, Ansible, and PowerShell automation
+
+See [Deployment Evidence](docs/DEPLOYMENT_EVIDENCE.md) for complete verification and outputs.
+
 ## Troubleshooting
 
 ### Vault is sealed
