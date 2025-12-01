@@ -302,6 +302,26 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 MIT License - see [LICENSE](LICENSE) file.
 
+## Frontend Dashboard
+
+A modern React/Next.js frontend is available with a Vault Stealth aesthetic:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend will open at `http://localhost:3000`
+
+**Frontend Screenshots:**
+
+| Dashboard | Secret Browser | Dynamic Credentials |
+|-----------|---------------|---------------------|
+| ![Dashboard](docs/screenshots/vault_dashboard_1764618915895.png) | ![Secrets](docs/screenshots/vault_secrets_1764618939082.png) | ![Credentials](docs/screenshots/vault_creds_1764618961178.png) |
+
+See [Frontend Walkthrough](docs/FRONTEND_WALKTHROUGH.md) for full documentation.
+
 ## Certification Resources
 
 - [CyberArk PAM-DEF Exam](https://www.cyberark.com/services-support/technical-education/defender-exam/)
