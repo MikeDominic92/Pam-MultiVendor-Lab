@@ -49,6 +49,7 @@ PAM-Vault-Lab is a production-ready practice environment that simulates enterpri
 - **Multi-Protocol Support**: SSH, database (PostgreSQL/MySQL), and API targets
 - **Monitoring**: Prometheus metrics with Grafana dashboards
 - **Automation**: Ansible playbooks, PowerShell, and Python scripts
+- **AWS Integration (v1.1)**: Hybrid cloud secret sync with AWS Secrets Manager
 
 ## CyberArk PAM-DEF Alignment
 
@@ -139,6 +140,12 @@ pam-vault-lab/
 │   ├── config/vault.hcl       # Vault server config
 │   ├── policies/              # Access control policies
 │   └── scripts/               # Initialization scripts
+├── src/                        # Source code (v1.1+)
+│   └── integrations/          # AWS Secrets Manager integration
+│       ├── __init__.py        # Module initialization
+│       ├── aws_secrets_connector.py  # AWS connector
+│       ├── secret_sync.py     # Bidirectional sync
+│       └── rotation_handler.py # Rotation events
 ├── automation/                 # Automation tools
 │   ├── ansible/               # Ansible playbooks
 │   ├── powershell/            # Windows scripts
@@ -173,6 +180,163 @@ pam-vault-lab/
 | **Session Management** | Limited | Excellent (PSM) |
 
 **For CyberArk PAM-DEF Preparation**: This lab teaches core PAM concepts that directly apply to CyberArk, using freely available tools. Vault's architecture mirrors many CyberArk components, making knowledge transfer straightforward.
+
+## AWS Secrets Manager Integration (v1.1)
+
+**New in v1.1!** PAM-Vault-Lab now supports hybrid cloud secret management with AWS Secrets Manager integration.
+
+### Features
+
+- **Bidirectional Sync**: Sync secrets between Vault and AWS Secrets Manager
+- **Rotation Handling**: AWS Lambda-compatible rotation event processing
+- **Mock Mode**: Demo capabilities without AWS credentials
+- **Health Scoring**: Calculate secret staleness and health metrics
+- **Audit Trail**: Complete logging of all sync and rotation operations
+
+### Quick Start with AWS Integration
+
+#### Install Dependencies
+
+```bash
+pip install -r automation/python/requirements.txt
+```
+
+#### Using Mock Mode (No AWS Credentials Required)
+
+```python
+from src.integrations import AWSSecretsConnector, SecretSyncManager
+
+# Initialize in mock mode for demos
+aws_connector = AWSSecretsConnector(mock_mode=True)
+
+# Create a secret in AWS (mock)
+aws_connector.create_secret(
+    name='demo-database-credentials',
+    secret_value={'username': 'admin', 'password': 'secure123'},
+    description='Demo database credentials'
+)
+
+# Sync from Vault to AWS
+sync_manager = SecretSyncManager(mock_mode=True)
+result = sync_manager.sync_secret(
+    secret_name='database/prod',
+    direction=SyncDirection.VAULT_TO_AWS
+)
+print(f"Sync status: {result.status}")
+```
+
+#### Using Real AWS Credentials
+
+```python
+import os
+from src.integrations import AWSSecretsConnector, SecretSyncManager
+
+# Set AWS credentials
+os.environ['AWS_ACCESS_KEY_ID'] = 'your-access-key'
+os.environ['AWS_SECRET_ACCESS_KEY'] = 'your-secret-key'
+
+# Initialize connector
+aws_connector = AWSSecretsConnector(region_name='us-east-1')
+
+# Create secret in AWS
+aws_connector.create_secret(
+    name='prod-database',
+    secret_value={'username': 'dbadmin', 'password': 'P@ssw0rd!'},
+    tags={'Environment': 'Production', 'Application': 'PAM-Lab'}
+)
+
+# Bidirectional sync
+sync_manager = SecretSyncManager(
+    vault_addr='http://localhost:8200',
+    vault_token='your-vault-token',
+    aws_region='us-east-1'
+)
+
+# Sync from AWS to Vault
+result = sync_manager.sync_secret(
+    secret_name='prod-database',
+    direction=SyncDirection.AWS_TO_VAULT,
+    conflict_resolution=ConflictResolution.USE_NEWEST
+)
+```
+
+#### Handle Rotation Events
+
+```python
+from src.integrations import RotationEventHandler
+
+handler = RotationEventHandler(mock_mode=True)
+
+# Schedule automatic rotation
+schedule = handler.schedule_rotation(
+    secret_name='database-creds',
+    rotation_interval_days=30
+)
+
+# Rotate Vault secret and sync to AWS
+result = handler.rotate_vault_secret(
+    database_name='postgresql',
+    notify_aws=True
+)
+
+# Get rotation status
+status = handler.get_rotation_status('postgresql')
+print(f"Last rotation: {status['last_rotation']}")
+print(f"Success rate: {status['success_rate']}%")
+```
+
+#### Calculate Secret Health
+
+```python
+from src.integrations import AWSSecretsConnector
+
+connector = AWSSecretsConnector(region_name='us-east-1')
+
+# List all secrets
+secrets = connector.list_secrets()
+
+# Calculate health score for each
+for secret_metadata in secrets:
+    health = connector.calculate_secret_health_score(secret_metadata)
+    print(f"{secret_metadata.name}: {health['health_score']}/100 ({health['status']})")
+    if health['issues']:
+        print(f"  Issues: {', '.join(health['issues'])}")
+```
+
+### AWS Integration Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                  PAM-Vault-Lab v1.1                      │
+│                                                           │
+│  ┌──────────────┐         ┌──────────────┐              │
+│  │  HashiCorp   │◄───────►│  AWS Secrets │              │
+│  │    Vault     │   Sync  │   Manager    │              │
+│  └──────────────┘         └──────────────┘              │
+│         │                        │                       │
+│         │                        │                       │
+│  ┌──────▼──────────────────────▼─────┐                 │
+│  │   Secret Sync Manager              │                 │
+│  │  - Bidirectional sync              │                 │
+│  │  - Conflict resolution             │                 │
+│  │  - Audit logging                   │                 │
+│  └────────────────────────────────────┘                 │
+│                                                           │
+│  ┌────────────────────────────────────┐                 │
+│  │   Rotation Event Handler           │                 │
+│  │  - AWS Lambda compatible           │                 │
+│  │  - Vault rotation integration      │                 │
+│  │  - Rollback support                │                 │
+│  └────────────────────────────────────┘                 │
+│                                                           │
+└───────────────────────────────────────────────────────┘
+```
+
+### Module Reference
+
+- **`src/integrations/aws_secrets_connector.py`**: AWS Secrets Manager operations
+- **`src/integrations/secret_sync.py`**: Bidirectional synchronization
+- **`src/integrations/rotation_handler.py`**: Rotation event processing
 
 ## Automation Examples
 
@@ -318,7 +482,7 @@ Frontend will open at `http://localhost:3000`
 
 | Dashboard | Secret Browser | Dynamic Credentials |
 |-----------|---------------|---------------------|
-| ![Dashboard](docs/screenshots/vault_dashboard_1764618915895.png) | ![Secrets](docs/screenshots/vault_secrets_1764618939082.png) | ![Credentials](docs/screenshots/vault_creds_1764618961178.png) |
+| ![Dashboard](docs/screenshots/pam_vault_dashboard_01.png) | ![Secrets](docs/screenshots/pam_vault_secrets_02.png) | ![Credentials](docs/screenshots/vault_creds_1764618961178.png) |
 
 See [Frontend Walkthrough](docs/FRONTEND_WALKTHROUGH.md) for full documentation.
 

@@ -69,6 +69,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rotation validation tests
 - CI workflow for automated testing
 
+## [1.1.0] - 2025-12-04
+
+### Added - AWS Secrets Manager Integration
+- **New `src/integrations/` module** for hybrid cloud secret management
+- **AWS Secrets Manager Connector** (`aws_secrets_connector.py`):
+  - Full CRUD operations for AWS Secrets Manager via boto3
+  - Mock mode for offline demos without AWS credentials
+  - Secret health/staleness scoring algorithm
+  - Comprehensive audit logging
+  - Support for secret tagging and metadata
+  - Type hints and detailed docstrings
+- **Bidirectional Secret Sync** (`secret_sync.py`):
+  - Sync secrets between HashiCorp Vault and AWS Secrets Manager
+  - Multiple sync directions: Vault→AWS, AWS→Vault, Bidirectional
+  - Conflict detection and resolution strategies (overwrite, skip, use newest, manual)
+  - Batch synchronization support
+  - Dry-run mode for testing
+  - Sync status tracking and reporting
+  - Audit trail export (JSON format)
+- **Rotation Event Handler** (`rotation_handler.py`):
+  - AWS Lambda-compatible rotation event processing
+  - 4-step rotation workflow (create, set, test, finish)
+  - Vault database rotation integration
+  - Rotation scheduling and tracking
+  - Success rate calculation
+  - Rollback support for failed rotations
+  - Rotation history export
+- **Dependencies**: Added boto3 and botocore for AWS integration
+
+### Enhanced
+- Updated `requirements.txt` with AWS SDK (boto3==1.34.51, botocore==1.34.51)
+- All new code includes December 2025 v1.1 enhancement comments
+- Comprehensive error handling and logging throughout
+- Type hints for better IDE support and code quality
+
+### Documentation
+- Updated README.md with v1.1 AWS Integration section
+- Enhanced CHANGELOG.md with detailed v1.1 release notes
+- All modules include detailed docstrings and usage examples
+
+### Technical Details
+- Architecture: Modular design with separation of concerns
+- Mock Mode: Full offline demo capability without AWS credentials
+- Audit Trail: Complete logging of all sync and rotation operations
+- Health Scoring: Algorithm considers staleness, rotation status, tags, and access patterns
+- Conflict Resolution: Multiple strategies for handling sync conflicts
+
 ## [Unreleased]
 
 ### Planned
@@ -82,14 +129,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Transit secrets engine exercise
 - PKI secrets engine for certificate management
 - LDAP authentication integration
+- AWS Secrets Manager exercise in lab curriculum
 
 ---
 
 ## Version History
 
+- **1.1.0** (2025-12-04): AWS Secrets Manager integration with sync and rotation handling
 - **1.0.0** (2025-11-30): Initial release with complete lab environment
 
 ## Migration Notes
+
+### From 1.0.0 to 1.1.0
+1. Update Python dependencies: `pip install -r automation/python/requirements.txt`
+2. New AWS integration modules available in `src/integrations/`
+3. Configure AWS credentials (or use mock mode for demos)
+4. Optional: Review AWS Secrets Manager Integration section in README.md
 
 ### From Nothing to 1.0.0
 This is the initial release. Follow the Quick Start guide in README.md.
