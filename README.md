@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/dashboard-new.png" alt="PAM Multi-Vendor Lab" width="800"/>
+  <img src="docs/images/dashboard-new.svg" alt="PAM Multi-Vendor Lab" width="800"/>
 </p>
 
 <h1 align="center">PAM Multi-Vendor Lab</h1>
