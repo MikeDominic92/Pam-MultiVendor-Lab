@@ -1,439 +1,304 @@
 <p align="center">
-  <img src="docs/images/dashboard-new.png" alt="PAM Vault Lab" width="800"/>
+  <img src="docs/images/dashboard-new.png" alt="PAM Multi-Vendor Lab" width="800"/>
 </p>
 
-<h1 align="center">PAM Vault Lab</h1>
-<h3 align="center">Enterprise Privileged Access Management with AWS Secrets Manager Sync</h3>
+<h1 align="center">PAM Multi-Vendor Lab</h1>
+<h3 align="center">Enterprise Privileged Access Management with HashiCorp Vault, Delinea Secret Server, and AWS Secrets Manager</h3>
 
 <p align="center">
   <img src="https://img.shields.io/badge/HashiCorp-Vault_1.15+-orange.svg" alt="Vault"/>
-  <img src="https://img.shields.io/badge/Docker-Compose-2496ED.svg" alt="Docker"/>
+  <img src="https://img.shields.io/badge/Delinea-Secret_Server-blue.svg" alt="Delinea"/>
   <img src="https://img.shields.io/badge/AWS-Secrets_Manager-FF9900.svg" alt="AWS"/>
-  <img src="https://img.shields.io/badge/CyberArk-PAM_DEF_Aligned-red.svg" alt="CyberArk"/>
-  <img src="https://img.shields.io/badge/version-1.1.0-purple.svg" alt="Version"/>
+  <img src="https://img.shields.io/badge/Docker-Compose-2496ED.svg" alt="Docker"/>
+  <img src="https://img.shields.io/badge/Python-3.10+-green.svg" alt="Python"/>
+  <img src="https://img.shields.io/badge/version-2.0.0-purple.svg" alt="Version"/>
 </p>
 
 <p align="center">
-  <strong>Production-ready PAM practice environment with hybrid cloud secret synchronization between HashiCorp Vault and AWS Secrets Manager</strong>
+  <strong>Production-ready multi-vendor PAM demonstration with cross-platform automation, migration tooling, and unified abstraction layer</strong>
 </p>
 
 ---
 
-## The Problem
+## Why Multi-Vendor PAM?
 
-<table>
-<tr>
-<td width="50%">
+Modern enterprises rarely use a single PAM solution. This lab demonstrates expertise across multiple platforms:
 
-### PAM Practice is Prohibitively Expensive
+| Platform | Strength | Best For |
+|----------|----------|----------|
+| **HashiCorp Vault** | Dynamic secrets, cloud-native | DevOps, microservices, CI/CD |
+| **Delinea Secret Server** | Session recording, discovery | Enterprise IT, compliance |
+| **AWS Secrets Manager** | Native AWS integration | Cloud workloads, Lambda |
 
-Enterprise PAM challenges for learning:
-- **CyberArk licensing** costs $50K+ annually
-- **No home lab options** for commercial PAM solutions
-- **Theory without practice** doesn't build skills
-- **Certification prep** requires hands-on experience
-
-Learning PAM without access to:
-- Real secrets management workflows
-- Dynamic credential generation
-- Password rotation automation
-- Multi-system integration patterns
-
-</td>
-<td width="50%">
-
-### What PAM Professionals Need
-
-Modern privileged access requires:
-- **Hands-on practice** with enterprise patterns
-- **$0 lab environment** for experimentation
-- **CyberArk concept mapping** for certification
-- **Hybrid cloud integration** for modern architecture
-- **Automation tooling** (Ansible, PowerShell, Python)
-- **Monitoring and audit** capabilities
-
-**This lab provides enterprise PAM at zero cost.**
-
-</td>
-</tr>
-</table>
+**This lab shows how to:**
+* Integrate multiple PAM platforms
+* Migrate secrets between platforms
+* Build unified automation across vendors
+* Make architecture recommendations
 
 ---
 
-## The Solution: PAM Vault Lab
+## What This Repository Demonstrates
 
-<p align="center">
-  <img src="docs/images/secrets-new.png" alt="Secrets Management" width="800"/>
-</p>
-
-Complete PAM practice environment aligned with CyberArk PAM-DEF concepts:
-
-| Capability | Technology | Outcome |
-|------------|------------|---------|
-| **Secrets Management** | Vault KV v2 Engine | Versioned secret storage |
-| **Dynamic Credentials** | Database Secrets Engine | On-demand credential generation |
-| **Password Rotation** | Rotation Scripts + Lambda | Automated credential refresh |
-| **Hybrid Cloud Sync** | AWS Secrets Manager | Multi-cloud secret management |
-| **Session Monitoring** | Prometheus + Grafana | Real-time PAM metrics |
-| **Audit Logging** | Vault Audit Device | Complete compliance trail |
-
----
-
-## Screenshots
-
-### Dashboard Views
-
-<table>
-<tr>
-<td align="center" width="33%">
-<img src="docs/images/dashboard-new.png" alt="Dashboard"/>
-<br/><strong>Vault Dashboard</strong>
-<br/>Stealth dark theme
-</td>
-<td align="center" width="33%">
-<img src="docs/images/secrets-new.png" alt="Secrets"/>
-<br/><strong>Secrets Browser</strong>
-<br/>KV v2 engine management
-</td>
-<td align="center" width="33%">
-<img src="docs/images/vault-creds-new.png" alt="Credentials"/>
-<br/><strong>Dynamic Credentials</strong>
-<br/>Database secret generation
-</td>
-</tr>
-</table>
-
-### Additional Views
-
-<table>
-<tr>
-<td align="center" width="50%">
-<img src="docs/images/pki-new.png" alt="PKI"/>
-<br/><strong>PKI Management</strong>
-<br/>Certificate authority operations
-</td>
-<td align="center" width="50%">
-<img src="docs/images/vault-audit-new.png" alt="Audit"/>
-<br/><strong>Audit Logs</strong>
-<br/>Compliance-ready audit trail
-</td>
-</tr>
-</table>
-
----
-
-## Why AWS Secrets Manager? (v1.1)
-
-<table>
-<tr>
-<td width="60%">
-
-### The Integration Rationale
-
-AWS Secrets Manager was chosen for v1.1 because:
-
-1. **Enterprise Standard** - Native AWS secret management
-2. **Rotation Support** - Built-in Lambda rotation
-3. **Hybrid Cloud** - Connect on-prem Vault to cloud
-4. **boto3 SDK** - Official Python integration
-5. **Compliance Ready** - SOC 2, PCI-DSS compatible
-
-### Skills Demonstrated
-
-- Hybrid cloud secret management
-- Bidirectional synchronization patterns
-- AWS Lambda rotation handlers
-- Conflict resolution strategies
-- Secret health scoring algorithms
-
-</td>
-<td width="40%">
-
-### Before vs After
-
-| Metric | v1.0 | v1.1 |
-|--------|------|------|
-| Cloud Integration | None | **AWS Secrets** |
-| Sync Direction | Manual | **Bidirectional** |
-| Rotation Triggers | Local | **Lambda Events** |
-| Health Scoring | Basic | **Comprehensive** |
-
-### Sync Capabilities
-
-- Vault to AWS push
-- AWS to Vault pull
-- Conflict resolution (newest wins)
-- Audit trail on both sides
-- Health score calculation
-- Staleness detection
-
-</td>
-</tr>
-</table>
-
----
-
-## CyberArk PAM-DEF Alignment
-
-<table>
-<tr>
-<td width="50%">
-
-### CyberArk Concept Mapping
-
-| CyberArk Component | Vault Equivalent | Lab Exercise |
-|-------------------|------------------|--------------|
-| **Digital Vault** | KV Secrets Engine | Exercise 1, 2 |
-| **CPM** | Rotation Scripts | Exercise 4 |
-| **PSM** | SSH Proxy (concept) | Exercise 3 |
-| **PVWA** | Vault UI/API | All exercises |
-| **Dual Control** | Policies + Approvals | Exercise 2 |
-| **Dynamic Credentials** | Database Engine | Exercise 3 |
-| **Audit** | Audit Device | Exercise 5 |
-
-</td>
-<td width="50%">
-
-### Why This Lab Works
-
-**For CyberArk PAM-DEF Preparation:**
-
-HashiCorp Vault mirrors CyberArk's architecture:
-- **Vault (Safe)** = KV Secrets Engine
-- **CPM** = Rotation automation
-- **PSM** = Session proxy concepts
-- **PVWA** = Web UI and API access
-
-Knowledge transfers directly to CyberArk exams while providing hands-on practice at zero cost.
-
-**Cost Comparison:**
-- CyberArk License: $50K+/year
-- This Lab: **$0**
-
-</td>
-</tr>
-</table>
-
----
-
-## Architecture
+### Multi-Vendor PAM Expertise
 
 ```
-                              INFRASTRUCTURE LAYER
-    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-    │  HashiCorp      │    │   PostgreSQL    │    │     MySQL       │
-    │  Vault Server   │    │   Database      │    │   Database      │
-    │  ─────────────  │    │  ─────────────  │    │  ─────────────  │
-    │  KV v2 Engine   │    │  Target System  │    │  Target System  │
-    │  PKI Engine     │    │  Dynamic Creds  │    │  Dynamic Creds  │
-    │  DB Engine      │    │                 │    │                 │
-    └────────┬────────┘    └────────┬────────┘    └────────┬────────┘
-             │                      │                      │
-             └──────────────────────┼──────────────────────┘
-                                    │
-                                    ▼
-    ┌─────────────────────────────────────────────────────────────────┐
-    │                    SECRET SYNC ENGINE (v1.1)                     │
-    │                                                                  │
-    │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
-    │  │  AWS Secrets │  │ Secret Sync  │  │  Rotation Handler    │  │
-    │  │  Connector   │  │ Manager      │  │                      │  │
-    │  │ ────────────│  │ ────────────│  │ ────────────────────│  │
-    │  │ boto3 SDK    │  │ Bidirectional│  │ Lambda Compatible    │  │
-    │  │ Mock Mode    │  │ Sync         │  │ Health Scoring       │  │
-    │  │ Health Score │  │ Conflict Res │  │ Rollback Support     │  │
-    │  └──────────────┘  └──────────────┘  └──────────────────────┘  │
-    └─────────────────────────────┬───────────────────────────────────┘
-                                  │
-            ┌─────────────────────┼─────────────────────┐
-            ▼                     ▼                     ▼
-    ┌──────────────┐      ┌──────────────┐      ┌──────────────┐
-    │    React     │      │  Prometheus  │      │   AWS        │
-    │   Frontend   │      │  + Grafana   │      │   Secrets    │
-    │              │      │              │      │   Manager    │
-    │ Vault Stealth│      │ PAM Metrics  │      │ Hybrid Cloud │
-    │ Dark Theme   │      │ Dashboards   │      │ Sync Target  │
-    └──────────────┘      └──────────────┘      └──────────────┘
+                     PAM Multi-Vendor Architecture
+    ================================================================
+
+    ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+    │  HashiCorp      │     │    Delinea      │     │      AWS        │
+    │     Vault       │     │  Secret Server  │     │ Secrets Manager │
+    │  ─────────────  │     │  ─────────────  │     │  ─────────────  │
+    │ * Dynamic creds │     │ * Discovery     │     │ * Native AWS    │
+    │ * PKI/certs     │     │ * Session rec   │     │ * Lambda rotate │
+    │ * Database      │     │ * Approval flow │     │ * CloudFormation│
+    └────────┬────────┘     └────────┬────────┘     └────────┬────────┘
+             │                       │                       │
+             └───────────────────────┼───────────────────────┘
+                                     │
+                          ┌──────────▼──────────┐
+                          │   Unified PAM       │
+                          │      Client         │
+                          │  ────────────────   │
+                          │ * Cross-platform    │
+                          │ * Migration tools   │
+                          │ * Health monitoring │
+                          │ * Comparison reports│
+                          └─────────────────────┘
 ```
+
+### Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Delinea Client** | Full Python client with OAuth2, CRUD, folder management, CLI |
+| **Unified Abstraction** | Single interface for all three platforms |
+| **Migration Tools** | Bi-directional migration with dry-run support |
+| **Mock Mode** | Demo everything without live credentials |
+| **Rich CLI** | Professional terminal UI with progress bars |
+| **Lab Exercises** | 8 hands-on labs from basics to advanced |
 
 ---
 
 ## Quick Start
 
 ### Prerequisites
-- Docker Desktop 20.10+
-- Docker Compose 2.0+
-- Python 3.9+ (for automation)
-- 8GB RAM minimum
+* Docker & Docker Compose
+* Python 3.10+
+* 8GB RAM recommended
 
 ### Installation
 
 ```bash
 # Clone repository
-git clone https://github.com/MikeDominic92/pam-vault-lab.git
-cd pam-vault-lab
+git clone https://github.com/MikeDominic92/pam-multivendor-lab.git
+cd pam-multivendor-lab
+
+# Set up Python environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r scripts/requirements.txt
 
 # Configure environment
 cp .env.example .env
 
-# Start the lab
+# Start Vault (Docker)
+cd vault
 docker-compose up -d
-
-# Initialize Vault
-docker exec -it vault /scripts/init-vault.sh
-# SAVE THE ROOT TOKEN AND UNSEAL KEYS!
+./scripts/init-vault.sh
 ```
 
-### Access Points
-- **Vault UI**: http://localhost:8200
-- **Grafana**: http://localhost:3000 (admin/admin)
-- **Prometheus**: http://localhost:9090
-- **Frontend**: http://localhost:3001
+### Run Demo (No Credentials Required)
 
----
+```bash
+# Test Delinea client (mock mode)
+python scripts/delinea_client.py --mock demo
 
-## Lab Exercises
+# Test unified PAM client
+python scripts/unified_pam_client.py demo
 
-### Progressive Learning Path
-
-| Exercise | Topic | CyberArk Concept |
-|----------|-------|------------------|
-| **01** | Vault Basics | PVWA, Digital Vault |
-| **02** | Secret Management | Safe Management |
-| **03** | Dynamic Credentials | CPM, JIT Access |
-| **04** | Password Rotation | CPM Rotation |
-| **05** | Audit & Logging | Audit Trail |
-
-### v1.1 AWS Integration Example
-
-```python
-from src.integrations import AWSSecretsConnector, SecretSyncManager, SyncDirection
-
-# Initialize connector (mock mode for demos)
-aws_connector = AWSSecretsConnector(mock_mode=True)
-
-# Create a secret in AWS
-aws_connector.create_secret(
-    name='prod-database-credentials',
-    secret_value={'username': 'admin', 'password': 'S3cur3P@ss!'},
-    description='Production database credentials'
-)
-
-# Bidirectional sync
-sync_manager = SecretSyncManager(mock_mode=True)
-result = sync_manager.sync_secret(
-    secret_name='database/prod',
-    direction=SyncDirection.VAULT_TO_AWS
-)
-
-print(f"Sync status: {result.status}")
-print(f"Synced at: {result.timestamp}")
-
-# Handle rotation events
-from src.integrations import RotationEventHandler
-
-handler = RotationEventHandler(mock_mode=True)
-schedule = handler.schedule_rotation(
-    secret_name='database-creds',
-    rotation_interval_days=30
-)
+# Test migration (dry run)
+python scripts/delinea_to_vault.py demo
 ```
-
----
-
-## Use Cases
-
-<table>
-<tr>
-<td width="50%">
-
-### 1. CyberArk Certification Prep
-
-**Scenario**: Preparing for PAM-DEF exam.
-
-**Lab Exercises**:
-- Practice vault operations (Exercise 1)
-- Learn secret lifecycle (Exercise 2)
-- Understand rotation (Exercise 4)
-- Master audit logging (Exercise 5)
-
-**Outcome**: Hands-on PAM experience at $0 cost.
-
-</td>
-<td width="50%">
-
-### 2. Hybrid Cloud Migration
-
-**Scenario**: Moving from on-prem to cloud PAM.
-
-**Integration**:
-- Deploy Vault locally
-- Enable AWS Secrets Manager sync
-- Migrate secrets with bidirectional sync
-- Validate with health scoring
-
-**Outcome**: Zero-downtime secret migration.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 3. Dynamic Database Credentials
-
-**Scenario**: Eliminate static database passwords.
-
-**Implementation**:
-- Configure Database Secrets Engine
-- Create dynamic credential roles
-- Set TTL and max TTL
-- Integrate with applications
-
-**Outcome**: No more shared passwords.
-
-</td>
-<td width="50%">
-
-### 4. Automated Rotation
-
-**Scenario**: 90-day password rotation policy.
-
-**Automation**:
-- Configure rotation schedule
-- AWS Lambda trigger integration
-- Sync rotated secrets to cloud
-- Audit trail for compliance
-
-**Outcome**: Automated compliance.
-
-</td>
-</tr>
-</table>
 
 ---
 
 ## Project Structure
 
 ```
-pam-vault-lab/
-├── docker-compose.yml          # Infrastructure definition
-├── vault/
-│   ├── config/vault.hcl       # Vault server configuration
-│   ├── policies/              # Access control policies
-│   └── scripts/               # Initialization scripts
-├── src/
-│   └── integrations/          # v1.1: AWS integration
-│       ├── aws_secrets_connector.py  # AWS Secrets Manager ops
-│       ├── secret_sync.py            # Bidirectional sync
-│       └── rotation_handler.py       # Rotation events
-├── automation/
-│   ├── ansible/               # Ansible playbooks
-│   ├── powershell/            # Windows scripts
-│   └── python/                # Python clients
-├── exercises/                  # Step-by-step labs
+pam-multivendor-lab/
+├── scripts/                    # Python automation
+│   ├── vault_client.py         # Vault operations
+│   ├── delinea_client.py       # Delinea operations (NEW)
+│   ├── unified_pam_client.py   # Cross-platform abstraction (NEW)
+│   ├── vault_to_delinea.py     # Migration tool (NEW)
+│   ├── delinea_to_vault.py     # Migration tool (NEW)
+│   ├── config.py               # Unified configuration (NEW)
+│   └── aws/                    # AWS integration
+├── delinea/                    # Delinea resources (NEW)
+│   ├── api-examples/           # Python examples
+│   ├── powershell/             # PowerShell scripts
+│   ├── templates/              # Secret templates
+│   └── DELINEA_SETUP.md        # Setup guide
+├── vault/                      # Vault configuration
+│   ├── config/                 # Vault config files
+│   ├── policies/               # ACL policies
+│   └── scripts/                # Init scripts
+├── labs/                       # Hands-on exercises
+│   ├── 01-vault-basics.md
+│   ├── 02-secret-management.md
+│   ├── 03-dynamic-credentials.md
+│   ├── 04-password-rotation.md
+│   ├── 05-audit-logging.md
+│   ├── 06-delinea-basics.md    # NEW
+│   ├── 07-cross-platform-migration.md  # NEW
+│   └── 08-unified-pam-operations.md    # NEW
+├── docs/                       # Documentation
+│   ├── FEATURE_COMPARISON.md   # Platform comparison (NEW)
+│   ├── INTERVIEW_TALKING_POINTS.md  # For job prep (NEW)
+│   └── ...
+├── ARCHITECTURE.md             # Architecture diagrams (NEW)
+├── automation/                 # Ansible & PowerShell
 ├── frontend/                   # React dashboard
-└── docs/                       # Documentation
+└── monitoring/                 # Prometheus & Grafana
 ```
+
+---
+
+## Platform Feature Comparison
+
+| Feature | CyberArk | Delinea | Vault | AWS SM |
+|---------|:--------:|:-------:|:-----:|:------:|
+| Password vaulting | ***** | **** | **** | *** |
+| Session recording | ***** | *** | * | * |
+| Account discovery | ***** | **** | ** | * |
+| Dynamic secrets | *** | ** | ***** | ** |
+| API automation | ***** | *** | ***** | ***** |
+| Cloud deployment | *** | **** | ***** | ***** |
+| Open source | No | No | Yes | No |
+| Cost | $$$$$ | $$$ | $ | $$ |
+
+**My Recommendation:**
+* **Large enterprise, strict compliance** -> CyberArk
+* **Mid-market, faster deployment** -> Delinea Secret Server
+* **DevOps/cloud-native** -> HashiCorp Vault
+* **AWS-native workloads** -> AWS Secrets Manager
+* **Hybrid architecture** -> Vault + Delinea together
+
+---
+
+## CLI Commands
+
+### Delinea Client
+
+```bash
+# Check connection status
+python scripts/delinea_client.py --mock status
+
+# List secrets
+python scripts/delinea_client.py --mock list
+
+# Get secret by ID
+python scripts/delinea_client.py --mock get 1
+
+# Create secret
+python scripts/delinea_client.py --mock create \
+  -n "new-secret" -t 3 -f 1 \
+  -d "Server=db.example.com" \
+  -d "Username=admin" \
+  -d "Password=secret123"
+
+# List folders
+python scripts/delinea_client.py --mock folders
+
+# List templates
+python scripts/delinea_client.py --mock templates
+```
+
+### Unified PAM Client
+
+```bash
+# Detect available platforms
+python scripts/unified_pam_client.py detect
+
+# Health check all platforms
+python scripts/unified_pam_client.py health
+
+# Get secret from specific platform
+python scripts/unified_pam_client.py get 1 --platform delinea
+
+# Compare secrets across platforms
+python scripts/unified_pam_client.py compare 1 "secret/test" \
+  --platform1 delinea --platform2 vault
+```
+
+### Migration Tools
+
+```bash
+# Dry run migration (Delinea -> Vault)
+python scripts/delinea_to_vault.py migrate 1 --dry-run
+
+# Migrate entire folder
+python scripts/delinea_to_vault.py folder 3 --base-path secret/imported --dry-run
+
+# Generate migration report
+python scripts/delinea_to_vault.py migrate 1 --dry-run --output report.json
+
+# Reverse migration (Vault -> Delinea)
+python scripts/vault_to_delinea.py migrate secret/test --folder 1 --dry-run
+```
+
+---
+
+## Lab Exercises
+
+| Lab | Topic | Duration | Level |
+|-----|-------|----------|-------|
+| [Lab 01](labs/01-vault-basics.md) | Vault Fundamentals | 30 min | Beginner |
+| [Lab 02](labs/02-secret-management.md) | KV Secrets Engine | 30 min | Beginner |
+| [Lab 03](labs/03-dynamic-credentials.md) | Dynamic Database Creds | 45 min | Intermediate |
+| [Lab 04](labs/04-password-rotation.md) | Automated Rotation | 45 min | Intermediate |
+| [Lab 05](labs/05-audit-logging.md) | Audit & Compliance | 30 min | Intermediate |
+| [Lab 06](labs/06-delinea-basics.md) | **Delinea Basics** | 30 min | Beginner |
+| [Lab 07](labs/07-cross-platform-migration.md) | **Cross-Platform Migration** | 45 min | Advanced |
+| [Lab 08](labs/08-unified-pam-operations.md) | **Unified PAM Client** | 30 min | Advanced |
+
+---
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Multi-vendor architecture with Mermaid diagrams |
+| [docs/FEATURE_COMPARISON.md](docs/FEATURE_COMPARISON.md) | Detailed platform comparison matrix |
+| [docs/INTERVIEW_TALKING_POINTS.md](docs/INTERVIEW_TALKING_POINTS.md) | PAM Architect interview preparation |
+| [delinea/DELINEA_SETUP.md](delinea/DELINEA_SETUP.md) | Delinea Secret Server setup guide |
+| [docs/VAULT_SETUP.md](docs/VAULT_SETUP.md) | HashiCorp Vault setup guide |
+
+---
+
+## Certifications Aligned
+
+This lab supports preparation for:
+
+* **CyberArk PAM-DEF** (Defender) - Vault concepts map to CyberArk components
+* **Delinea Security Academy** - Direct Delinea experience
+* **HashiCorp Vault Associate** - Full Vault operations
+* **HashiCorp Vault Operations Professional** - Advanced patterns
+* **AWS Security Specialty** - Secrets Manager integration
+
+---
+
+## Cost Analysis
+
+| Component | Cost | Notes |
+|-----------|------|-------|
+| HashiCorp Vault | $0 | Open source |
+| Delinea (demo) | $0 | Mock mode / 30-day trial |
+| AWS (demo) | $0 | Mock mode |
+| Docker/Compose | $0 | Free |
+| **Total** | **$0** | vs CyberArk $50K+/year |
 
 ---
 
@@ -441,52 +306,46 @@ pam-vault-lab/
 
 | Category | Technologies |
 |----------|-------------|
-| **PAM** | HashiCorp Vault, CyberArk Concepts, Secrets Management |
-| **Cloud Integration** | AWS Secrets Manager, boto3 SDK |
-| **Infrastructure** | Docker, Docker Compose, Prometheus, Grafana |
+| **PAM** | Vault, Delinea, CyberArk concepts, AWS SM |
+| **Cloud** | AWS, multi-cloud patterns |
+| **Infrastructure** | Docker, Prometheus, Grafana |
 | **Automation** | Python, Ansible, PowerShell |
-| **Security** | Dynamic Credentials, Rotation, Audit |
-| **Frontend** | React, TypeScript, Vault Stealth Theme |
-
----
-
-## Cost Analysis
-
-Running PAM Vault Lab is free:
-
-| Component | Cost | Notes |
-|-----------|------|-------|
-| HashiCorp Vault | $0 | Open source |
-| Docker/Compose | $0 | Free for personal use |
-| PostgreSQL/MySQL | $0 | Open source |
-| Prometheus/Grafana | $0 | Open source |
-| AWS Integration | $0 | Mock mode available |
-| **Total** | **$0** | vs CyberArk $50K+ |
-
-**True Enterprise PAM Practice at Zero Cost**
+| **Security** | Dynamic creds, rotation, audit |
+| **Architecture** | Cross-platform migration, abstraction |
 
 ---
 
 ## Roadmap
 
-- [x] **v1.0**: Core PAM lab with Vault, databases, monitoring
-- [x] **v1.1**: AWS Secrets Manager integration
-- [ ] **v1.2**: Azure Key Vault integration
-- [ ] **v1.3**: HashiCorp Boundary for session management
-- [ ] **v2.0**: Multi-node Vault cluster with HA
+* [x] **v1.0**: Core Vault lab with databases and monitoring
+* [x] **v1.1**: AWS Secrets Manager integration
+* [x] **v2.0**: Delinea integration, unified client, migration tools
+* [ ] **v2.1**: Azure Key Vault integration
+* [ ] **v2.2**: Google Cloud Secret Manager
+* [ ] **v3.0**: HashiCorp Boundary for session management
 
 ---
 
 ## Author
 
-**Mike Dominic**
-- GitHub: [@MikeDominic92](https://github.com/MikeDominic92)
-- Focus: PAM + Cloud Secrets Management
+**Dominic M. Hoang** | PAM & Identity Security Professional
+
+* Multi-vendor PAM expertise (Vault, Delinea, CyberArk concepts)
+* CyberArk PAM-DEF aligned
+* Focus: Enterprise PAM architecture and automation
+
+GitHub: [@MikeDominic92](https://github.com/MikeDominic92)
+
+---
+
+## License
+
+MIT License - See [LICENSE](LICENSE) for details.
 
 ---
 
 <p align="center">
-  <strong>Built for CyberArk PAM-DEF certification prep with enterprise-grade AWS hybrid cloud integration.</strong>
+  <strong>Enterprise Multi-Vendor PAM at Zero Cost</strong>
   <br/>
-  <sub>This is a portfolio project. Production deployment requires proper Vault hardening and AWS credentials.</sub>
+  <sub>Built for PAM Architect roles requiring CyberArk, Delinea, Thycotic, Centrify expertise</sub>
 </p>
