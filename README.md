@@ -12,8 +12,13 @@
 <p align="center">
   <img src="https://img.shields.io/badge/3_PAM_Platforms-000000?style=flat-square" alt="Platforms"/>
   <img src="https://img.shields.io/badge/8_Lab_Exercises-000000?style=flat-square" alt="Labs"/>
-
   <img src="https://img.shields.io/badge/Dark_Glassmorphism-a855f7?style=flat-square" alt="Design"/>
+</p>
+
+<p align="center">
+  <a href="https://pam-multivendor-lab.netlify.app/">
+    <img src="https://img.shields.io/badge/Live_Demo-00f5ff?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo"/>
+  </a>
 </p>
 
 ---
@@ -47,6 +52,7 @@ PAM Multi-Vendor Lab provides a unified environment to learn, compare, and autom
 ---
 
 <p align="center">
+  <a href="https://pam-multivendor-lab.netlify.app/">Live Demo</a> |
   <a href="#platform-screenshots">Screenshots</a> |
   <a href="#technical-problem-solving">Problem Solving</a> |
   <a href="#key-features">Features</a> |
@@ -788,8 +794,9 @@ GitHub: [@MikeDominic92](https://github.com/MikeDominic92)
   <br/>
   <sub>Enterprise PAM expertise across CyberArk, Delinea, Thycotic, and HashiCorp ecosystems.</sub>
   <br/>
-  <sub>Featuring an award-winning cybersecurity dashboard with dark glassmorphism design.</sub>
+  <sub>Featuring a modern cybersecurity dashboard with dark glassmorphism design.</sub>
   <br/><br/>
+  <a href="https://pam-multivendor-lab.netlify.app/">Live Demo</a> |
   <a href="https://github.com/MikeDominic92/Pam-MultiVendor-Lab">GitHub</a>
   <br/><br/>
   MIT License - Copyright 2026 Dominic M. Hoang
