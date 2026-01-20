@@ -174,9 +174,9 @@ frontend/
 
 **Award-winning v2.5 Dashboard with Dark Glassmorphism Design**
 
-### Dashboard Features (v2.5)
-
-The new cybersecurity dashboard features a modern "Dark Glassmorphism + Cyber Elegance" aesthetic:
+### Security Dashboard
+<!-- Screenshot: docs/images/dashboard-v25.png -->
+*Run `cd frontend && npm run dev` and visit http://localhost:3000 to see the live dashboard*
 
 | Feature | Description |
 |:--------|:------------|
@@ -188,24 +188,16 @@ The new cybersecurity dashboard features a modern "Dark Glassmorphism + Cyber El
 | **Pie Chart Distribution** | Platform secrets breakdown with neon glow |
 | **Audit Stream** | Real-time log entries with staggered animations |
 
-### Visual Design Elements
+### Color Palette
 
-```
-Color Palette:
-* Obsidian (#030712) - Page background
-* Cyber Cyan (#00f5ff) - Primary accent, active states
-* Electric Purple (#a855f7) - Secondary accent
-* Neon Emerald (#10b981) - Success states
-* Vault Gold (#fbbf24) - Premium features
-* Plasma Pink (#ec4899) - Warnings, alerts
-```
-
-### Run Locally to See the Dashboard
-
-```bash
-cd frontend && npm install && npm run dev
-# Visit http://localhost:3000
-```
+| Color | Hex | Usage |
+|:------|:----|:------|
+| Obsidian | `#030712` | Page background |
+| Cyber Cyan | `#00f5ff` | Primary accent, active states |
+| Electric Purple | `#a855f7` | Secondary accent |
+| Neon Emerald | `#10b981` | Success states |
+| Vault Gold | `#fbbf24` | Premium features |
+| Plasma Pink | `#ec4899` | Warnings, alerts |
 
 ---
 
