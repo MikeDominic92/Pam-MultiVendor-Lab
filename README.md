@@ -12,7 +12,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/3_PAM_Platforms-000000?style=flat-square" alt="Platforms"/>
   <img src="https://img.shields.io/badge/8_Lab_Exercises-000000?style=flat-square" alt="Labs"/>
-  <img src="https://img.shields.io/badge/Award_Winning_UI-00f5ff?style=flat-square" alt="UI"/>
+
   <img src="https://img.shields.io/badge/Dark_Glassmorphism-a855f7?style=flat-square" alt="Design"/>
 </p>
 
@@ -22,7 +22,7 @@
 
 ### What is PAM Multi-Vendor Lab?
 
-**PAM Multi-Vendor Lab is a production-ready demonstration of enterprise privileged access management across HashiCorp Vault, Delinea Secret Server, and AWS Secrets Manager - featuring an award-winning cybersecurity dashboard with modern 2026 design aesthetics.**
+**PAM Multi-Vendor Lab is a production-ready demonstration of enterprise privileged access management across HashiCorp Vault, Delinea Secret Server, and AWS Secrets Manager - featuring a modern cybersecurity dashboard with glassmorphism design.**
 
 </div>
 
@@ -47,8 +47,6 @@ PAM Multi-Vendor Lab provides a unified environment to learn, compare, and autom
 ---
 
 <p align="center">
-  <a href="#overview">Overview</a> |
-  <a href="#frontend-dashboard">Dashboard</a> |
   <a href="#platform-screenshots">Screenshots</a> |
   <a href="#technical-problem-solving">Problem Solving</a> |
   <a href="#key-features">Features</a> |
@@ -60,51 +58,9 @@ PAM Multi-Vendor Lab provides a unified environment to learn, compare, and autom
 
 <div align="center">
 
-## Frontend Dashboard
-
-### Award-Winning Cybersecurity UI
-
-The PAM Multi-Vendor Lab features a modern, award-winning dashboard built with Next.js 16, React 19, and TailwindCSS v4. The design follows 2026 UI trends with a "Dark Glassmorphism + Cyber Elegance" aesthetic.
-
-</div>
-
-### Design System
-
-| Element | Description |
-|:--------|:------------|
-| **Theme** | Dark Glassmorphism with frosted glass panels, blur effects, and ambient gradients |
-| **Primary Color** | Cyber Cyan (#00f5ff) - Used for primary actions and active states |
-| **Accent Colors** | Electric Purple (#a855f7), Neon Emerald (#10b981), Vault Gold (#fbbf24), Plasma Pink (#ec4899) |
-| **Typography** | Inter for body text, Orbitron for headers, Fira Code for monospace |
-| **Animations** | Framer Motion v12 for smooth micro-interactions and page transitions |
-
-### Dashboard Pages
-
-| Page | Features |
-|:-----|:---------|
-| **Security Dashboard** | Real-time metrics with sparklines, platform health cards, API request volume charts, system health progress rings, platform distribution pie chart, secret types breakdown, recent audit events |
-| **Secrets Browser** | Multi-platform tree navigator (Delinea/AWS/Vault), search with filtering, secret details with glassmorphism cards, version history |
-| **Dynamic Credentials** | Credential generator with backend selection (Database/AWS IAM), role and TTL configuration, active leases table with countdown timers |
-| **PKI Authority** | Certificate issuance wizard, certificate chain visualization, expiring certificates alerts, revocation status tracking |
-| **Audit & Policies** | Live audit stream with staggered animations, filter pills with neon selection states, HCL policy editor with line numbers, policy security scoring |
-
-### Accessibility & Performance
-
-| Feature | Implementation |
-|:--------|:---------------|
-| **Reduced Motion** | Comprehensive `prefers-reduced-motion` support for all animations |
-| **High Contrast** | Enhanced border visibility for `prefers-contrast: high` |
-| **Keyboard Navigation** | Skip-to-content link, focus-visible states with neon glow |
-| **Screen Readers** | Semantic HTML, ARIA labels, sr-only utility class |
-| **WCAG Compliance** | 4.5:1 minimum contrast ratios for text content |
-
----
-
-<div align="center">
-
 ## Platform Screenshots
 
-**Award-winning v2.5 Dashboard with Dark Glassmorphism Design**
+**Dashboard with Dark Glassmorphism Design**
 
 ### Security Dashboard
 
