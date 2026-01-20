@@ -88,19 +88,6 @@ The PAM Multi-Vendor Lab features a modern, award-winning dashboard built with N
 | **PKI Authority** | Certificate issuance wizard, certificate chain visualization, expiring certificates alerts, revocation status tracking |
 | **Audit & Policies** | Live audit stream with staggered animations, filter pills with neon selection states, HCL policy editor with line numbers, policy security scoring |
 
-### UI Component Library
-
-| Component | Description |
-|:----------|:------------|
-| **VaultShell** | Main layout wrapper with glassmorphism sidebar and floating header |
-| **GlassButton** | Glassmorphism button with variants (primary, secondary, ghost, danger) and glow effects |
-| **NeonBadge** | Status badges with neon glow in multiple color variants |
-| **LeaseTimer** | Animated countdown timer with progress bar and critical state detection |
-| **VaultCard** | Glass card component with accent colors and hover effects |
-| **ChartTheme** | Custom Recharts theming with gradients, tooltips, sparklines, and progress rings |
-| **Toast** | Notification system with glass styling and auto-dismiss |
-| **Skeleton** | Loading state components with shimmer animations |
-
 ### Accessibility & Performance
 
 | Feature | Implementation |
@@ -110,61 +97,6 @@ The PAM Multi-Vendor Lab features a modern, award-winning dashboard built with N
 | **Keyboard Navigation** | Skip-to-content link, focus-visible states with neon glow |
 | **Screen Readers** | Semantic HTML, ARIA labels, sr-only utility class |
 | **WCAG Compliance** | 4.5:1 minimum contrast ratios for text content |
-
-### Tech Stack
-
-```
-frontend/
-├── Next.js 16 + React 19
-├── TailwindCSS v4
-├── Framer Motion v12
-├── Recharts (data visualization)
-├── Lucide React (icons)
-└── TypeScript
-```
-
----
-
-<div align="center">
-
-## Overview
-
-### The Challenge
-
-| Challenge | Impact |
-|:---------:|:------:|
-| **60% of breaches** involve compromised credentials | Verizon DBIR |
-| **PAM fragmentation** across 3-5 platforms per enterprise | Industry average |
-| **$50K+ annually** for CyberArk licensing alone | Enterprise pricing |
-| **Vendor lock-in** limits architecture flexibility | Migration difficulty |
-
-### The Solution
-
-| Capability | Result |
-|:----------:|:------:|
-| **Multi-Platform Abstraction** | Single API for Vault, Delinea, AWS |
-| **Bi-directional Migration** | Move secrets between any platforms |
-| **Award-Winning Dashboard** | Modern cybersecurity UI |
-| **8 Lab Exercises** | Hands-on learning path |
-
-</div>
-
----
-
-<div align="center">
-
-## Why PAM Multi-Vendor Lab
-
-| Capability | Single Vendor | PAM Multi-Vendor Lab |
-|:-----------|:--------------:|:--------------------:|
-| **Platform Coverage** | 1 platform | 3 platforms |
-| **Migration Tools** | Manual export/import | Automated with dry-run |
-| **Cross-Platform API** | None | Unified abstraction |
-| **Dashboard UI** | Basic | Award-winning glassmorphism |
-| **Lab Environment** | Vendor-specific | Multi-vendor |
-| **Architecture Comparison** | Limited | Side-by-side |
-
-</div>
 
 ---
 
@@ -275,39 +207,6 @@ frontend/
 | **Action Type Badges** | Color-coded Read, Update, Create, Delete, List operations |
 | **Actor Attribution** | Track which service accounts and users performed actions |
 | **Export Capability** | Download audit logs for compliance and forensics |
-
----
-
-### Color Palette
-
-| Color | Hex | Usage |
-|:------|:----|:------|
-| Obsidian | `#030712` | Page background |
-| Cyber Cyan | `#00f5ff` | Primary accent, active states |
-| Electric Purple | `#a855f7` | Secondary accent |
-| Neon Emerald | `#10b981` | Success states |
-| Vault Gold | `#fbbf24` | Premium features |
-| Plasma Pink | `#ec4899` | Warnings, alerts |
-
----
-
-### CLI Demos
-
-**Delinea Client** - Full-featured Python client with OAuth2 authentication and mock mode
-
-<img src="assets/delinea_client_demo.svg" alt="Delinea Client" width="800">
-
----
-
-**Unified PAM Client** - Cross-platform abstraction layer with health checks and secret comparison
-
-<img src="assets/unified_pam_demo.svg" alt="Unified PAM Client" width="800">
-
----
-
-**Migration Tools** - Bi-directional migration with dry-run, field mapping, and JSON reports
-
-<img src="assets/migration_demo.svg" alt="Migration Tools" width="800">
 
 </div>
 
@@ -865,30 +764,7 @@ This lab supports preparation for:
 
 </div>
 
----
 
-<div align="center">
-
-## Roadmap
-
-### Completed
-
-| Version | Features |
-|:-------:|:---------|
-| v1.0 | Core Vault lab with databases and monitoring |
-| v1.1 | AWS Secrets Manager integration |
-| v2.0 | Delinea integration, unified client, migration tools |
-| v2.5 | Award-winning glassmorphism dashboard with Next.js 16 |
-
-### Upcoming
-
-| Version | Features |
-|:-------:|:---------|
-| v2.6 | Azure Key Vault integration |
-| v2.7 | Google Cloud Secret Manager |
-| v3.0 | HashiCorp Boundary for session management |
-
-</div>
 
 ---
 
