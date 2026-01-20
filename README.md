@@ -172,31 +172,58 @@ frontend/
 
 ## Platform Screenshots
 
-**Multi-vendor PAM dashboard and CLI interfaces**
+**Award-winning v2.5 Dashboard with Dark Glassmorphism Design**
 
-### Dashboard Overview
-Real-time platform health with secret counts across Vault, Delinea, and AWS
+### Dashboard Features (v2.5)
 
-<img src="docs/images/dashboard-new.svg" alt="Dashboard Overview" width="800">
+The new cybersecurity dashboard features a modern "Dark Glassmorphism + Cyber Elegance" aesthetic:
+
+| Feature | Description |
+|:--------|:------------|
+| **Glassmorphism Cards** | Frosted glass panels with backdrop blur and subtle borders |
+| **Animated Stat Cards** | Real-time metrics with sparkline visualizations |
+| **Platform Health** | Live status indicators for Vault, Delinea, and AWS |
+| **API Charts** | Area charts showing request volume and error rates |
+| **System Health Rings** | Animated progress rings for CPU, Memory, Storage |
+| **Pie Chart Distribution** | Platform secrets breakdown with neon glow |
+| **Audit Stream** | Real-time log entries with staggered animations |
+
+### Visual Design Elements
+
+```
+Color Palette:
+* Obsidian (#030712) - Page background
+* Cyber Cyan (#00f5ff) - Primary accent, active states
+* Electric Purple (#a855f7) - Secondary accent
+* Neon Emerald (#10b981) - Success states
+* Vault Gold (#fbbf24) - Premium features
+* Plasma Pink (#ec4899) - Warnings, alerts
+```
+
+### Run Locally to See the Dashboard
+
+```bash
+cd frontend && npm install && npm run dev
+# Visit http://localhost:3000
+```
 
 ---
 
-### Delinea Client Demo
-Full-featured Python client with OAuth2 authentication and mock mode
+### CLI Demos
+
+**Delinea Client** - Full-featured Python client with OAuth2 authentication and mock mode
 
 <img src="assets/delinea_client_demo.svg" alt="Delinea Client" width="800">
 
 ---
 
-### Unified PAM Client
-Cross-platform abstraction layer with health checks and secret comparison
+**Unified PAM Client** - Cross-platform abstraction layer with health checks and secret comparison
 
 <img src="assets/unified_pam_demo.svg" alt="Unified PAM Client" width="800">
 
 ---
 
-### Migration Tools
-Bi-directional migration with dry-run, field mapping, and JSON reports
+**Migration Tools** - Bi-directional migration with dry-run, field mapping, and JSON reports
 
 <img src="assets/migration_demo.svg" alt="Migration Tools" width="800">
 
