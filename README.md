@@ -68,6 +68,10 @@ PAM Multi-Vendor Lab provides a unified environment to learn, compare, and autom
 
 **Dashboard with Dark Glassmorphism Design**
 
+<a href="https://pam-multivendor-lab.netlify.app/">
+  <img src="https://img.shields.io/badge/View_Live_Demo-00f5ff?style=for-the-badge&logo=netlify&logoColor=white" alt="View Live Demo"/>
+</a>
+
 ### Security Dashboard
 
 <img src="docs/images/dashboard-main.png" alt="Security Dashboard" width="900">
