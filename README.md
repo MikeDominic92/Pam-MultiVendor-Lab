@@ -6,14 +6,14 @@
   <img src="https://img.shields.io/badge/Delinea-Secret_Server-0078D4.svg?style=flat-square" alt="Delinea"/>
   <img src="https://img.shields.io/badge/AWS-Secrets_Manager-FF9900.svg?style=flat-square&logo=amazonaws&logoColor=white" alt="AWS"/>
   <img src="https://img.shields.io/badge/Python-3.10+-3776AB.svg?style=flat-square&logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/Docker-Compose-2496ED.svg?style=flat-square&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/Next.js-16-000000.svg?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js"/>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/3_PAM_Platforms-000000?style=flat-square" alt="Platforms"/>
   <img src="https://img.shields.io/badge/8_Lab_Exercises-000000?style=flat-square" alt="Labs"/>
-  <img src="https://img.shields.io/badge/4_Python_Clients-000000?style=flat-square" alt="Clients"/>
-  <img src="https://img.shields.io/badge/Bi--directional_Migration-000000?style=flat-square" alt="Migration"/>
+  <img src="https://img.shields.io/badge/Award_Winning_UI-00f5ff?style=flat-square" alt="UI"/>
+  <img src="https://img.shields.io/badge/Dark_Glassmorphism-a855f7?style=flat-square" alt="Design"/>
 </p>
 
 ---
@@ -22,7 +22,7 @@
 
 ### What is PAM Multi-Vendor Lab?
 
-**PAM Multi-Vendor Lab is a production-ready demonstration of enterprise privileged access management across HashiCorp Vault, Delinea Secret Server, and AWS Secrets Manager.**
+**PAM Multi-Vendor Lab is a production-ready demonstration of enterprise privileged access management across HashiCorp Vault, Delinea Secret Server, and AWS Secrets Manager - featuring an award-winning cybersecurity dashboard with modern 2026 design aesthetics.**
 
 </div>
 
@@ -48,13 +48,80 @@ PAM Multi-Vendor Lab provides a unified environment to learn, compare, and autom
 
 <p align="center">
   <a href="#overview">Overview</a> |
+  <a href="#frontend-dashboard">Dashboard</a> |
   <a href="#platform-screenshots">Screenshots</a> |
   <a href="#technical-problem-solving">Problem Solving</a> |
   <a href="#key-features">Features</a> |
   <a href="#architecture">Architecture</a> |
-  <a href="#cli-reference">CLI</a> |
   <a href="#quick-start">Quick Start</a>
 </p>
+
+---
+
+<div align="center">
+
+## Frontend Dashboard
+
+### Award-Winning Cybersecurity UI
+
+The PAM Multi-Vendor Lab features a modern, award-winning dashboard built with Next.js 16, React 19, and TailwindCSS v4. The design follows 2026 UI trends with a "Dark Glassmorphism + Cyber Elegance" aesthetic.
+
+</div>
+
+### Design System
+
+| Element | Description |
+|:--------|:------------|
+| **Theme** | Dark Glassmorphism with frosted glass panels, blur effects, and ambient gradients |
+| **Primary Color** | Cyber Cyan (#00f5ff) - Used for primary actions and active states |
+| **Accent Colors** | Electric Purple (#a855f7), Neon Emerald (#10b981), Vault Gold (#fbbf24), Plasma Pink (#ec4899) |
+| **Typography** | Inter for body text, Orbitron for headers, Fira Code for monospace |
+| **Animations** | Framer Motion v12 for smooth micro-interactions and page transitions |
+
+### Dashboard Pages
+
+| Page | Features |
+|:-----|:---------|
+| **Security Dashboard** | Real-time metrics with sparklines, platform health cards, API request volume charts, system health progress rings, platform distribution pie chart, secret types breakdown, recent audit events |
+| **Secrets Browser** | Multi-platform tree navigator (Delinea/AWS/Vault), search with filtering, secret details with glassmorphism cards, version history |
+| **Dynamic Credentials** | Credential generator with backend selection (Database/AWS IAM), role and TTL configuration, active leases table with countdown timers |
+| **PKI Authority** | Certificate issuance wizard, certificate chain visualization, expiring certificates alerts, revocation status tracking |
+| **Audit & Policies** | Live audit stream with staggered animations, filter pills with neon selection states, HCL policy editor with line numbers, policy security scoring |
+
+### UI Component Library
+
+| Component | Description |
+|:----------|:------------|
+| **VaultShell** | Main layout wrapper with glassmorphism sidebar and floating header |
+| **GlassButton** | Glassmorphism button with variants (primary, secondary, ghost, danger) and glow effects |
+| **NeonBadge** | Status badges with neon glow in multiple color variants |
+| **LeaseTimer** | Animated countdown timer with progress bar and critical state detection |
+| **VaultCard** | Glass card component with accent colors and hover effects |
+| **ChartTheme** | Custom Recharts theming with gradients, tooltips, sparklines, and progress rings |
+| **Toast** | Notification system with glass styling and auto-dismiss |
+| **Skeleton** | Loading state components with shimmer animations |
+
+### Accessibility & Performance
+
+| Feature | Implementation |
+|:--------|:---------------|
+| **Reduced Motion** | Comprehensive `prefers-reduced-motion` support for all animations |
+| **High Contrast** | Enhanced border visibility for `prefers-contrast: high` |
+| **Keyboard Navigation** | Skip-to-content link, focus-visible states with neon glow |
+| **Screen Readers** | Semantic HTML, ARIA labels, sr-only utility class |
+| **WCAG Compliance** | 4.5:1 minimum contrast ratios for text content |
+
+### Tech Stack
+
+```
+frontend/
+├── Next.js 16 + React 19
+├── TailwindCSS v4
+├── Framer Motion v12
+├── Recharts (data visualization)
+├── Lucide React (icons)
+└── TypeScript
+```
 
 ---
 
@@ -77,7 +144,7 @@ PAM Multi-Vendor Lab provides a unified environment to learn, compare, and autom
 |:----------:|:------:|
 | **Multi-Platform Abstraction** | Single API for Vault, Delinea, AWS |
 | **Bi-directional Migration** | Move secrets between any platforms |
-| **Mock Mode** | Full demos without credentials |
+| **Award-Winning Dashboard** | Modern cybersecurity UI |
 | **8 Lab Exercises** | Hands-on learning path |
 
 </div>
@@ -93,7 +160,7 @@ PAM Multi-Vendor Lab provides a unified environment to learn, compare, and autom
 | **Platform Coverage** | 1 platform | 3 platforms |
 | **Migration Tools** | Manual export/import | Automated with dry-run |
 | **Cross-Platform API** | None | Unified abstraction |
-| **Learning Cost** | $5K+ training | $0 |
+| **Dashboard UI** | Basic | Award-winning glassmorphism |
 | **Lab Environment** | Vendor-specific | Multi-vendor |
 | **Architecture Comparison** | Limited | Side-by-side |
 
@@ -390,7 +457,7 @@ flowchart TD
 | **Delinea Python Client** | Full OAuth2 authentication, CRUD operations, folder management |
 | **Unified PAM Client** | Single interface for Vault, Delinea, and AWS |
 | **Migration Tools** | Bi-directional with dry-run, field mapping, JSON reports |
-| **Mock Mode** | Complete demos without live credentials |
+| **Award-Winning Dashboard** | Modern glassmorphism UI with real-time metrics |
 | **Rich CLI** | Professional terminal UI with progress bars |
 | **8 Lab Exercises** | Hands-on learning from basics to advanced |
 
@@ -413,6 +480,12 @@ flowchart TD
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#2d2d2d', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#000000', 'lineColor': '#4a4a4a', 'secondaryColor': '#3a3a3a', 'tertiaryColor': '#1a1a1a', 'background': '#1a1a1a', 'mainBkg': '#2d2d2d', 'nodeBorder': '#000000', 'clusterBkg': '#252525', 'clusterBorder': '#000000', 'titleColor': '#ffffff', 'edgeLabelBackground': '#2d2d2d'}}}%%
 flowchart TD
+    subgraph Frontend["Frontend Dashboard"]
+        UI[Next.js 16 + React 19]
+        Design[Glassmorphism UI]
+        Charts[Recharts + Framer Motion]
+    end
+
     subgraph CLI["CLI Layer"]
         A[delinea_client.py]
         B[unified_pam_client.py]
@@ -440,6 +513,9 @@ flowchart TD
         O[Windows Servers]
     end
 
+    UI --> F
+    Design --> UI
+    Charts --> UI
     A --> E
     B --> F
     C --> F
@@ -539,12 +615,12 @@ flowchart LR
 
 | Feature | CyberArk | Delinea | Vault | AWS SM |
 |:--------|:--------:|:-------:|:-----:|:------:|
-| Password Vaulting | ★★★★★ | ★★★★☆ | ★★★★☆ | ★★★☆☆ |
-| Session Recording | ★★★★★ | ★★★☆☆ | ★☆☆☆☆ | ★☆☆☆☆ |
-| Account Discovery | ★★★★★ | ★★★★☆ | ★★☆☆☆ | ★☆☆☆☆ |
-| Dynamic Secrets | ★★★☆☆ | ★★☆☆☆ | ★★★★★ | ★★☆☆☆ |
-| API Automation | ★★★★★ | ★★★☆☆ | ★★★★★ | ★★★★★ |
-| Cloud Deployment | ★★★☆☆ | ★★★★☆ | ★★★★★ | ★★★★★ |
+| Password Vaulting | 5/5 | 4/5 | 4/5 | 3/5 |
+| Session Recording | 5/5 | 3/5 | 1/5 | 1/5 |
+| Account Discovery | 5/5 | 4/5 | 2/5 | 1/5 |
+| Dynamic Secrets | 3/5 | 2/5 | 5/5 | 2/5 |
+| API Automation | 5/5 | 3/5 | 5/5 | 5/5 |
+| Cloud Deployment | 3/5 | 4/5 | 5/5 | 5/5 |
 | Open Source | No | No | Yes | No |
 | Cost | $$$$$ | $$$ | $ | $$ |
 
@@ -566,7 +642,7 @@ flowchart LR
 
 <h3 align="center">Prerequisites</h3>
 
-<p align="center">Python 3.10+ | Docker & Docker Compose | 8GB RAM</p>
+<p align="center">Python 3.10+ | Node.js 20+ | Docker & Docker Compose | 8GB RAM</p>
 
 ### Installation
 
@@ -589,7 +665,22 @@ docker-compose up -d
 ./scripts/init-vault.sh
 ```
 
-### Run Demos (No Credentials Required)
+### Run Frontend Dashboard
+
+```bash
+# Navigate to frontend
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Visit http://localhost:3000
+```
+
+### Run CLI Demos (No Credentials Required)
 
 ```bash
 # Delinea client demo
@@ -608,27 +699,43 @@ python scripts/delinea_to_vault.py demo
 
 ```
 Pam-MultiVendor-Lab/
+|-- frontend/                      # Next.js 16 Dashboard
+|   |-- src/
+|   |   |-- app/                   # App router pages
+|   |   |   |-- page.tsx           # Security Dashboard
+|   |   |   |-- secrets/           # Secrets Browser
+|   |   |   |-- credentials/       # Dynamic Credentials
+|   |   |   |-- pki/               # PKI Authority
+|   |   |   |-- audit/             # Audit & Policies
+|   |   |   `-- globals.css        # Design system
+|   |   |-- components/
+|   |   |   |-- layout/            # VaultShell, Sidebar, Header
+|   |   |   |-- dashboard/         # VaultDoor visualization
+|   |   |   |-- ui/                # GlassButton, NeonBadge, Toast, etc.
+|   |   |   `-- providers/         # ClientProviders (Toast)
+|   |   `-- lib/
+|   |       |-- utils.ts           # Utility functions
+|   |       `-- hooks/             # useReducedMotion, etc.
 |-- scripts/
-|   |-- delinea_client.py       # Delinea Secret Server Python client
-|   |-- unified_pam_client.py   # Cross-platform PAM abstraction
-|   |-- vault_client.py         # HashiCorp Vault operations
-|   |-- vault_to_delinea.py     # Migration: Vault -> Delinea
-|   |-- delinea_to_vault.py     # Migration: Delinea -> Vault
-|   |-- config.py               # Unified configuration
-|   `-- aws/                    # AWS Secrets Manager integration
+|   |-- delinea_client.py          # Delinea Secret Server Python client
+|   |-- unified_pam_client.py      # Cross-platform PAM abstraction
+|   |-- vault_client.py            # HashiCorp Vault operations
+|   |-- vault_to_delinea.py        # Migration: Vault -> Delinea
+|   |-- delinea_to_vault.py        # Migration: Delinea -> Vault
+|   |-- config.py                  # Unified configuration
+|   `-- aws/                       # AWS Secrets Manager integration
 |-- vault/
-|   |-- config/                 # Vault configuration files
-|   |-- policies/               # ACL policies
-|   `-- scripts/                # Initialization scripts
+|   |-- config/                    # Vault configuration files
+|   |-- policies/                  # ACL policies
+|   `-- scripts/                   # Initialization scripts
 |-- delinea/
-|   |-- api-examples/           # Python API examples
-|   |-- powershell/             # PowerShell scripts
-|   `-- templates/              # Secret template definitions
-|-- labs/                       # 8 hands-on exercises
-|-- docs/                       # Documentation
-|-- assets/                     # Screenshots and diagrams
-|-- frontend/                   # React dashboard
-`-- monitoring/                 # Prometheus & Grafana
+|   |-- api-examples/              # Python API examples
+|   |-- powershell/                # PowerShell scripts
+|   `-- templates/                 # Secret template definitions
+|-- labs/                          # 8 hands-on exercises
+|-- docs/                          # Documentation
+|-- assets/                        # Screenshots and diagrams
+`-- monitoring/                    # Prometheus & Grafana
 ```
 
 ---
@@ -662,13 +769,14 @@ This lab supports preparation for:
 | v1.0 | Core Vault lab with databases and monitoring |
 | v1.1 | AWS Secrets Manager integration |
 | v2.0 | Delinea integration, unified client, migration tools |
+| v2.5 | Award-winning glassmorphism dashboard with Next.js 16 |
 
 ### Upcoming
 
 | Version | Features |
 |:-------:|:---------|
-| v2.1 | Azure Key Vault integration |
-| v2.2 | Google Cloud Secret Manager |
+| v2.6 | Azure Key Vault integration |
+| v2.7 | Google Cloud Secret Manager |
 | v3.0 | HashiCorp Boundary for session management |
 
 </div>
@@ -681,6 +789,13 @@ This lab supports preparation for:
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js"/>
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
+  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS"/>
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion"/>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
   <img src="https://img.shields.io/badge/Vault-F7931A?style=for-the-badge&logo=vault&logoColor=white" alt="Vault"/>
   <img src="https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS"/>
@@ -689,7 +804,8 @@ This lab supports preparation for:
 | Category | Technologies |
 |:--------:|:-------------|
 | **PAM Platforms** | HashiCorp Vault 1.15+, Delinea Secret Server, AWS Secrets Manager |
-| **Languages** | Python 3.10+, PowerShell, Bash |
+| **Frontend** | Next.js 16, React 19, TailwindCSS v4, Framer Motion v12, Recharts |
+| **Languages** | Python 3.10+, TypeScript, PowerShell, Bash |
 | **Libraries** | hvac, python-tss-sdk, boto3, click, rich, pydantic |
 | **Infrastructure** | Docker Compose, Prometheus, Grafana |
 | **Databases** | PostgreSQL, MySQL (for dynamic secrets) |
@@ -730,6 +846,8 @@ GitHub: [@MikeDominic92](https://github.com/MikeDominic92)
   <strong>PAM Multi-Vendor Lab</strong>
   <br/>
   <sub>Enterprise PAM expertise across CyberArk, Delinea, Thycotic, and HashiCorp ecosystems.</sub>
+  <br/>
+  <sub>Featuring an award-winning cybersecurity dashboard with dark glassmorphism design.</sub>
   <br/><br/>
   <a href="https://github.com/MikeDominic92/Pam-MultiVendor-Lab">GitHub</a>
   <br/><br/>

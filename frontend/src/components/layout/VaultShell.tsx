@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { VaultSidebar } from './VaultSidebar';
 import { VaultHeader } from './VaultHeader';
+import { motion } from 'framer-motion';
 
 interface VaultShellProps {
     children: React.ReactNode;
@@ -8,15 +11,20 @@ interface VaultShellProps {
 
 export function VaultShell({ children }: VaultShellProps) {
     return (
-        <div className="min-h-screen bg-obsidian-black text-ghost-white font-sans selection:bg-vault-gold/30 selection:text-white">
+        <div className="min-h-screen text-white font-sans selection:bg-cyber-cyan/30 selection:text-white">
             <VaultSidebar />
             <VaultHeader />
 
-            <main className="ml-64 p-8 relative z-10 min-h-[calc(100vh-4rem)]">
-                <div className="max-w-7xl mx-auto">
+            <motion.main
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="ml-[17.5rem] pt-6 pr-6 pb-6 relative z-10 min-h-screen"
+            >
+                <div className="max-w-[1600px] mx-auto">
                     {children}
                 </div>
-            </main>
+            </motion.main>
         </div>
     );
 }
