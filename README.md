@@ -175,18 +175,108 @@ frontend/
 **Award-winning v2.5 Dashboard with Dark Glassmorphism Design**
 
 ### Security Dashboard
-<!-- Screenshot: docs/images/dashboard-v25.png -->
-*Run `cd frontend && npm run dev` and visit http://localhost:3000 to see the live dashboard*
+
+<img src="docs/images/dashboard-main.png" alt="Security Dashboard" width="900">
+
+*Real-time security metrics with multi-platform monitoring across Vault, Delinea, and AWS*
 
 | Feature | Description |
 |:--------|:------------|
 | **Glassmorphism Cards** | Frosted glass panels with backdrop blur and subtle borders |
-| **Animated Stat Cards** | Real-time metrics with sparkline visualizations |
-| **Platform Health** | Live status indicators for Vault, Delinea, and AWS |
-| **API Charts** | Area charts showing request volume and error rates |
-| **System Health Rings** | Animated progress rings for CPU, Memory, Storage |
-| **Pie Chart Distribution** | Platform secrets breakdown with neon glow |
-| **Audit Stream** | Real-time log entries with staggered animations |
+| **Animated Stat Cards** | Real-time metrics (2,847 secrets, 156 active sessions, 45.2K API requests) |
+| **Vault Status** | Live vault seal status with unseal key visualization |
+| **Platform Health** | Connection status for Delinea (847 secrets), AWS (1,234 secrets), HashiCorp Vault |
+| **Active Leases** | Dynamic credential countdown timers with role information |
+| **API Request Volume** | Area chart showing 24-hour request and error trends |
+| **Platform Distribution** | Pie chart breakdown of secrets by platform |
+| **System Health** | CPU, Memory, and Storage utilization rings |
+
+---
+
+### Secrets Browser
+
+<img src="docs/images/secrets-browser.png" alt="Secrets Browser" width="900">
+
+*Unified secret management across all connected PAM platforms*
+
+| Feature | Description |
+|:--------|:------------|
+| **Tree Navigator** | Hierarchical view of secrets organized by platform (Delinea, AWS, Vault) |
+| **Folder Structure** | IT Infrastructure, API Keys, and custom folder organization |
+| **Secret Details** | Full secret view with server, database, username, and password fields |
+| **Version History** | Track changes with actor attribution and timestamps |
+| **Platform Badges** | Visual indicators showing source platform for each secret |
+| **Copy Actions** | One-click copy for sensitive field values |
+
+---
+
+### Dynamic Credentials
+
+<img src="docs/images/dynamic-credentials.png" alt="Dynamic Credentials" width="900">
+
+*Just-in-time credential generation with automatic expiration*
+
+| Feature | Description |
+|:--------|:------------|
+| **Credential Generator** | Request credentials for Database (PostgreSQL, MySQL, MSSQL) or AWS IAM |
+| **Role Selection** | Choose from read-only, admin, deployer, and custom roles |
+| **TTL Configuration** | Set lease duration from 15 minutes to 24 hours |
+| **Active Leases Table** | Monitor all active credentials with expiration countdowns |
+| **Platform Indicators** | Visual badges showing credential type (Database, AWS, PKI) |
+| **Auto-Rotation Stats** | Track average TTL and credential lifecycle metrics |
+
+---
+
+### PKI Authority
+
+<img src="docs/images/pki-authority.png" alt="PKI Authority" width="900">
+
+*Enterprise certificate management with visual trust chain hierarchy*
+
+| Feature | Description |
+|:--------|:------------|
+| **Certificate Metrics** | Active certs (1,247), Expiring (12), Revoked (34), Issued today (89) |
+| **Issue Certificate Wizard** | Generate certificates for Web Server, Internal Service, or Client Auth |
+| **Certificate Chain Visualization** | Interactive tree showing Root CA → Intermediate CAs → End entities |
+| **Expiring Soon Alerts** | Proactive warnings for certificates nearing expiration |
+| **Revocation Status** | Health status and online/offline CRL distribution points |
+| **Common Name Input** | Domain validation with real-time formatting |
+
+---
+
+### Audit & Policies
+
+<img src="docs/images/audit-policies.png" alt="Audit & Policies - Policy Editor" width="900">
+
+*HCL policy editor with security scoring and capability analysis*
+
+| Feature | Description |
+|:--------|:------------|
+| **ACL Policy List** | Manage admin-policy, app-read-only, pki-issuer, db-creds-rotator, deployment-bot |
+| **HCL Policy Editor** | Syntax-highlighted editor with line numbers and path definitions |
+| **Capabilities Display** | Visual badges for READ, LIST, CREATE, UPDATE, DENY permissions |
+| **Path Coverage** | Track the number of paths protected by each policy |
+| **Security Score** | A-F grading based on least-privilege compliance |
+| **Create New Policy** | Guided workflow for defining new access policies |
+
+---
+
+### Live Audit Stream
+
+<img src="docs/images/audit-log-stream.png" alt="Live Audit Stream" width="900">
+
+*Real-time access monitoring across all PAM platforms*
+
+| Feature | Description |
+|:--------|:------------|
+| **12,847 Total Events** | Comprehensive audit trail with 23 denied requests |
+| **Live Event Stream** | Real-time updates with timestamp, action type, and path |
+| **Platform Filtering** | View events from Vault, Delinea, or AWS independently |
+| **Action Type Badges** | Color-coded Read, Update, Create, Delete, List operations |
+| **Actor Attribution** | Track which service accounts and users performed actions |
+| **Export Capability** | Download audit logs for compliance and forensics |
+
+---
 
 ### Color Palette
 
